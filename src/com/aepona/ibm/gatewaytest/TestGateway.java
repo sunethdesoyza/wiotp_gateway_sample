@@ -15,42 +15,26 @@ public class TestGateway {
 		/**
 		  * Load device properties
 		  */
-		Properties props = new Properties();
-//		try {
-//			props.load(GatewayEventPublishWithCounter.class.getResourceAsStream(PROPERTIES_FILE_NAME));
-//		} catch (IOException e1) {
-//			System.err.println("Not able to read the properties file, exiting..");
-//			System.exit(-1);
-//		}		
-		
+		Properties props = new Properties();		
 		
 		props.setProperty("Organization-ID", "w6dwxh");
 		props.setProperty("Gateway-Type", "1701aaba-fbce-4524-8d31-fb8400537c48");
 		props.setProperty("Gateway-ID", "ec8ffc44-ea3b-406b-8038-d2832853b516");
 		props.setProperty("Authentication-Token", "47q335b6A1n8ps8qdh");
-//		props.setProperty("Gateway-Type", "49f54c75-d704-4fba-860b-6da4d5b34aaf");
-//		props.setProperty("Gateway-ID", "e13c0608-258d-454e-a5b8-909f5a20598a");
-//		props.setProperty("Authentication-Token", "Mn9iJ6SIXnHpNJjCTw");
 		props.setProperty("Authentication-Method", "token");
 		props.setProperty("WebSocket", "false");
 		props.setProperty("Secure", "false");
-		//props.setProperty("Registration-Mode", "Manual");
-		//props.setProperty("API-Key", "a-b4fty6-uyyd5w3nj4");
-		//props.setProperty("API-Token", "N5kc_HW)d(9!znZ+97");
 
 				
 		GatewayClient myClient = null;
 		try {
 			//Instantiate and connect to IBM Watson IoT Platform
 			myClient = new GatewayClient(props);
-			//myClient.
 			myClient.connect();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		
-		//SystemObject obj = new SystemObject();
 		
 		/**
 		 * Publishes the process load event for every 1 second
