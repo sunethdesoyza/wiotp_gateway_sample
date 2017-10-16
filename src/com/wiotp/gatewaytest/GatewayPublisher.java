@@ -1,4 +1,4 @@
-package com.aepona.ibm.gatewaytest;
+package com.wiotp.gatewaytest;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -8,7 +8,7 @@ import com.google.gson.JsonObject;
 import com.ibm.iotf.client.api.APIClient;
 import com.ibm.iotf.client.gateway.GatewayClient;
 
-public class TestGateway {
+public class GatewayPublisher {
 
 	public static void main(String[] args) throws Exception{
 		
@@ -18,9 +18,9 @@ public class TestGateway {
 		Properties props = new Properties();		
 		
 		props.setProperty("Organization-ID", "w6dwxh");
-		props.setProperty("Gateway-Type", "1701aaba-fbce-4524-8d31-fb8400537c48");
-		props.setProperty("Gateway-ID", "ec8ffc44-ea3b-406b-8038-d2832853b516");
-		props.setProperty("Authentication-Token", "47q335b6A1n8ps8qdh");
+		props.setProperty("Gateway-Type", "7a84b60a-4e7e-4251-84b0-8b6004bf1d12");
+		props.setProperty("Gateway-ID", "d1bd9f7d-4e74-48e0-9fe4-a8f2d723c12f");
+		props.setProperty("Authentication-Token", "o6Z9?2yjthn5BlcKA(");
 		props.setProperty("Authentication-Method", "token");
 		props.setProperty("WebSocket", "false");
 		props.setProperty("Secure", "false");
@@ -49,8 +49,8 @@ public class TestGateway {
 				JsonObject location = new JsonObject();
 				location.addProperty("lat", 54.606314);
 				location.addProperty("lon", -5.918212);
-				location.addProperty("alt", 10);
-				location.addProperty("spd", 10);
+				location.addProperty("alt", 19);
+				location.addProperty("spd", 13);
 				location.addProperty("hdg", 324);
 				location.addProperty("nSats", 3);
 				location.addProperty("timestamp", Calendar.getInstance().getTimeInMillis());
@@ -58,7 +58,7 @@ public class TestGateway {
 				
 				JsonObject latest = new JsonObject();
 				JsonObject sensonrs = new JsonObject();
-				sensonrs.addProperty("247", 100);
+				sensonrs.addProperty("247", 56);
 				latest.add("sensors", sensonrs);
 				latest.addProperty("timestamp", Calendar.getInstance().getTimeInMillis());
 				st.add("latest", latest);
