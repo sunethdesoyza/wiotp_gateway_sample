@@ -18,9 +18,10 @@ public class GatewayPublisher {
 		Properties props = new Properties();		
 		
 		props.setProperty("Organization-ID", "w6dwxh");
-		props.setProperty("Gateway-Type", "7a84b60a-4e7e-4251-84b0-8b6004bf1d12");
-		props.setProperty("Gateway-ID", "d1bd9f7d-4e74-48e0-9fe4-a8f2d723c12f");
-		props.setProperty("Authentication-Token", "o6Z9?2yjthn5BlcKA(");
+		props.setProperty("Gateway-Type", "9f360cd6-23ee-4015-9e3b-37309f34d853");
+		props.setProperty("Gateway-ID", "48dd6553-05fd-4bcb-8720-764095cb264a");
+		props.setProperty("Authentication-Token", "I?fuMoPLIPs1QyX4gR");
+		
 		props.setProperty("Authentication-Method", "token");
 		props.setProperty("WebSocket", "false");
 		props.setProperty("Secure", "false");
@@ -47,8 +48,8 @@ public class GatewayPublisher {
 				//Generate a JSON object of the event to be published
 				JsonObject st = new JsonObject();
 				JsonObject location = new JsonObject();
-				location.addProperty("lat", 54.606314);
-				location.addProperty("lon", -5.918212);
+				location.addProperty("lat", 53.606314);
+				location.addProperty("lon", -4.918212);
 				location.addProperty("alt", 19);
 				location.addProperty("spd", 13);
 				location.addProperty("hdg", 324);
@@ -62,32 +63,6 @@ public class GatewayPublisher {
 				latest.add("sensors", sensonrs);
 				latest.addProperty("timestamp", Calendar.getInstance().getTimeInMillis());
 				st.add("latest", latest);
-
-				JsonObject md = new JsonObject();
-				md.addProperty("$lastUpdated", "2017-10-03T11:12:18.964114Z");
-				JsonObject lu = new JsonObject();
-				lu.addProperty("$lastUpdated", "2017-10-03T11:12:18.964114Z");
-				JsonObject lc = new JsonObject();
-				lc.add("lat", lu);
-				lc.add("lon", lu);
-				lc.add("alt", lu);
-				lc.add("spd", lu);
-				lc.add("hdg", lu);
-				lc.add("nSats", lu);
-				lc.add("timestamp", lu);
-				lc.addProperty("$lastUpdated", "2017-10-03T11:12:18.964114Z");
-				md.add("location", location);
-				
-				JsonObject ltd = new JsonObject();
-				ltd.addProperty("$lastUpdated", "2017-10-03T11:12:18.964114Z");
-				JsonObject sd = new JsonObject();
-				sd.addProperty("$lastUpdated", "2017-10-03T11:12:18.964114Z");
-				sd.add("1", lu);
-				ltd.add("sensors", sd);
-				ltd.add("timestamp", lu);
-				md.add("latest", ltd);
-
-				st.add("$metadata", md);
 
 				status = myClient.publishGatewayEvent("status", st);
 				System.out.println(st);
