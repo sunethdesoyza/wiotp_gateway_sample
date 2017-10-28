@@ -1,11 +1,10 @@
 package com.wiotp.gatewaytest;
 
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.Properties;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.ibm.iotf.client.api.APIClient;
 import com.ibm.iotf.client.gateway.GatewayClient;
 
 public class GatewayPublisher {
@@ -17,10 +16,10 @@ public class GatewayPublisher {
 		  */
 		Properties props = new Properties();		
 		
-		props.setProperty("Organization-ID", "w6dwxh");
-		props.setProperty("Gateway-Type", "9f360cd6-23ee-4015-9e3b-37309f34d853");
-		props.setProperty("Gateway-ID", "48dd6553-05fd-4bcb-8720-764095cb264a");
-		props.setProperty("Authentication-Token", "I?fuMoPLIPs1QyX4gR");
+		props.setProperty("Organization-ID", "4obg3g");
+		props.setProperty("Gateway-Type", "e8806385-afe1-4863-ab9e-08a227b226a6");
+		props.setProperty("Gateway-ID", "f2af1aa5-61e4-4e5d-aa68-666bba162bed");
+		props.setProperty("Authentication-Token", "IvU-wQINo09TU!Gbou");
 		
 		props.setProperty("Authentication-Method", "token");
 		props.setProperty("WebSocket", "false");
@@ -49,7 +48,7 @@ public class GatewayPublisher {
 				JsonObject st = new JsonObject();
 				JsonObject location = new JsonObject();
 				location.addProperty("lat", 53.606314);
-				location.addProperty("lon", -4.918212);
+				location.addProperty("lon", 4.918212);
 				location.addProperty("alt", 19);
 				location.addProperty("spd", 13);
 				location.addProperty("hdg", 324);
@@ -60,10 +59,29 @@ public class GatewayPublisher {
 				JsonObject latest = new JsonObject();
 				JsonObject sensonrs = new JsonObject();
 				sensonrs.addProperty("247", 56);
+				sensonrs.addProperty("248", 56);
 				latest.add("sensors", sensonrs);
 				latest.addProperty("timestamp", Calendar.getInstance().getTimeInMillis());
 				st.add("latest", latest);
-
+				
+	
+				JsonObject alert1 = new JsonObject();
+				alert1.addProperty("primaryCode", "abc");
+				alert1.addProperty("alertStatus", "ACTIVE");
+				alert1.addProperty("statusChangeTimestamp", Calendar.getInstance().getTimeInMillis());
+				JsonObject alert2 = new JsonObject();
+				alert2.addProperty("primaryCode", "abc");
+				alert2.addProperty("alertStatus", "ACTIVE");
+				alert2.addProperty("statusChangeTimestamp", Calendar.getInstance().getTimeInMillis());
+				JsonArray alertArray = new JsonArray();
+				alertArray.add(alert1);
+				alertArray.add(alert2);
+				st.add("alerts", alertArray);
+				
+//				JsonObject software = new JsonObject();
+//				software.addProperty("softwareId", "abc");
+//				st.add("software", software);
+				
 				status = myClient.publishGatewayEvent("status", st);
 				System.out.println(st);
 				Thread.sleep(10000);
